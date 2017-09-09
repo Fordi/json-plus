@@ -1,0 +1,23 @@
+{
+    Strings: [
+        "Test",
+        "\u1234",
+        "\r\n",
+        "\""
+    ],    
+    Numbers: [
+        12345,
+        1e2,
+        -3.4e5,
+        +6.7e-8,
+        1e+9
+    ],
+    keywords: [
+        true,
+        false,
+        null
+    ],
+    label: ref: "Referenced",
+    reference: @ref,
+    typed: Type {}
+}

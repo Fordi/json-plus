@@ -1,0 +1,14 @@
+/** EBNF for JSON+ */
+Object     ::= Type? "{" ((String | Name) ":" Value ("," (String | Name) ":" Value)*)? "}"
+Value      ::= (Label ":")? (Object | Array | String | Number | Reference | "true" | "false" | "null")
+Array      ::= "[" (Value ("," Value)*)? "]"
+String     ::= '"' ("\\" ("u" hexDigit hexDigit hexDigit hexDigit | ["/\\bfnrt] | StringChar ))* '"'
+Number     ::= "-"? ("0" | [1-9] digit+) ("."? digit+)? (("e" | "E") ("+" | "-")? digit+)?
+Type       ::= Identifier
+Name       ::= Identifier
+Label      ::= Identifier
+Reference  ::= "@" Identifier
+Identifier ::= [A-Za-z_]+ [A-Za-z0-9_]+
+digit      ::= [0-9]
+hexDigit   ::= [0-9a-fA-F]
+StringChar ::= [^ " \\ #x0000-#x001f ]

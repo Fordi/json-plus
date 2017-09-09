@@ -1,0 +1,29 @@
+{
+  "name": "json-plus",
+  "version": "1.0.0",
+  "description": "Parser and description of JSON+, an extended JSON format that allows for recursion and typing.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "test/test.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Fordi/json-plus.git"
+  },
+  "keywords": [
+    "json"
+  ],
+  "author": "Bryan Elliott <fordiman@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Fordi/json-plus/issues"
+  },
+  "homepage": "https://github.com/Fordi/json-plus#readme",
+  "devDependencies": {
+    "pegjs": "^0.10.0"
+  }
+}

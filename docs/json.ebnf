@@ -1,0 +1,11 @@
+/** original EBNF for JSON */
+
+Object     ::= "{" (String ":" Value ("," String ":" Value)*)? "}"
+Value      ::= (Object | Array | String | Number | Reference | "true" | "false" | "null")
+Array      ::= "[" (Value ("," Value)*)? "]"
+String     ::= '"' ("\\" ("u" hexDigit hexDigit hexDigit hexDigit | ["/\\bfnrt] | StringChar ))* '"'
+Number     ::= "-"? ("0" | [1-9] digit+) ("."? digit+)? (("e" | "E") ("+" | "-")? digit+)?
+digit      ::= [0-9]
+hexDigit   ::= [0-9a-fA-F]
+StringChar ::= [^ " \\ #x0000-#x001f ]
+
