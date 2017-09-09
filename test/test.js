@@ -4,12 +4,19 @@ fs.readFile('input.json', { encoding: 'utf-8' }, (err, input) => {
 	function Type() {
 		this.type = "Type";
 	}
-	
+	Type.prototype.toJsonPlus = function (indent) {
+		return "Type " + JSON.stringify(this, indent);
+	};
 	var handlers = {
 		multiValue: jsonPlus.multiValueHandler,
 		Type: (data) => new Type(data)
 	};
-	var output = JSON.stringify(jsonPlus.parse(input, handlers), null, 4).trim();
+	var parsed = jsonPlus.parse(input, handlers);
+	if (parsed.reference !== parsed.label) {
+		throw new Error("Test failed; referenced object not same as labeled");
+	}
+	var output = JSON.stringify(parsed, null, 4).trim();
+	//console.log(output);
 	fs.readFile('expected.json', { encoding: 'utf-8' }, (err, expected) => {
 		if (expected.trim() !== output) {
 			console.log(expected.trim().length, output.length);
@@ -17,7 +24,16 @@ fs.readFile('input.json', { encoding: 'utf-8' }, (err, input) => {
 				throw new Error("Test failed; compare test/expected.json to test/actual.json");
 			});
 		} else {
-			console.log("Passed");
+			console.log("Parse passed");
 		}
+		var restrung = jsonPlus.stringify(parsed);
+		var reparsed = jsonPlus.parse(restrung, handlers);
+		var rerestrung = jsonPlus.stringify(reparsed);
+		if (restrung !== rerestrung) {
+			console.error("Stringify failed: ", "\n", restrung, "\n", rerestrung);
+		} else {
+			console.log("Stringify passed");
+		}
+		
 	});
 });

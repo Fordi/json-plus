@@ -22,7 +22,7 @@
         name: "Fordi",
         name: "Fordiman"
     },
-    label: ref: "Referenced",
+    label: ref: { data: "Referenced" },
     reference: @ref, // Reference to the value of `label` above.
     typed: Type {}
 }

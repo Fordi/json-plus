@@ -24,8 +24,12 @@
             "length": 2
         }
     },
-    "label": "Referenced",
-    "reference": "Referenced",
+    "label": {
+        "data": "Referenced"
+    },
+    "reference": {
+        "data": "Referenced"
+    },
     "typed": {
         "type": "Type"
     }
