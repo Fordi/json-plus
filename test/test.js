@@ -15,6 +15,15 @@ fs.readFile('input.json', { encoding: 'utf-8' }, (err, input) => {
 	if (parsed.reference !== parsed.label) {
 		throw new Error("Test failed; referenced object not same as labeled");
 	}
+	if (!(parsed.repeatedNames.name instanceof jsonPlus.MultiValue)) {
+		throw new Error("Test failed; repeated names failed to result in a MultiValue");
+	}
+	if (parsed.repeatedNames.name.valueOf() !== "Fordiman") {
+		throw new Error("Test failed; repeated names does not result in last name for valueOf()");
+	}
+	if (parsed.repeatedNames.name.length !== 2) {
+		throw new Error("Test failed; MultiValue failed to enumerate all listed values");
+	}
 	var output = JSON.stringify(parsed, null, 4).trim();
 	//console.log(output);
 	fs.readFile('expected.json', { encoding: 'utf-8' }, (err, expected) => {
