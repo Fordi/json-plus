@@ -29,7 +29,10 @@ Incidentally, this tool is a damn miracle for writing a parser.
 
 ### TODO
 
-* See if the railroad diagram generator has a node lib
+* See if there's a node library for railroad diagram generation
+* Encapsulate the ripping appart of json-plus.xhtml using node.  Should be doable,
+    I just needed the browser for feedback while I was developing the postprocessor, 
+    so I couldn't include filesystem stuff to throw the files where they should be.
 * The stylesheets are a pain, and splitting them out from the SVG was a mistake
     made in the spirit of best practices. The SVG files would be more reusable if
     standalone.
