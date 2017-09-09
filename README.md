@@ -2,6 +2,11 @@
 
 JSON parser for node with a few extensions.  See http://fordi.org/json-plus for syntactical details.
 
+## Usage
+
+    Copy the contents of `lib` to your project's directory.  I'll work on 
+    appropriate npm packaging in a bit.
+
 ## API
 
     const jsonPlus = require('./json-plus');
