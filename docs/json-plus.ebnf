@@ -12,3 +12,6 @@ Identifier ::= [A-Za-z_]+ [A-Za-z0-9_]+
 digit      ::= [0-9]
 hexDigit   ::= [0-9a-fA-F]
 StringChar ::= [^ " \\ #x0000-#x001f ]
+Comment    ::= "/*" (!"*/" .)* "*/" | "//" (![\r\n] .)*
+
+

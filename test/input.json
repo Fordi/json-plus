@@ -1,4 +1,5 @@
 {
+    /* Hey, look.  Comments */
     Strings: [
         "Test",
         "\u1234",
@@ -6,13 +7,13 @@
         "\""
     ],    
     Numbers: [
-        12345,
+        /**/12345,
         1e2,
-        -3.4e5,
+        -3.4e5,/**/ // Testing where comments will break.
         +6.7e-8,
         1e+9
     ],
-    keywords: [
+    keywords:/**/[
         true,
         false,
         null
@@ -22,6 +23,6 @@
         name: "Fordiman"
     },
     label: ref: "Referenced",
-    reference: @ref,
+    reference: @ref, // Reference to the value of `label` above.
     typed: Type {}
 }
