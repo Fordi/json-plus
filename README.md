@@ -2,10 +2,9 @@
 
 JSON parser for node with a few extensions.  See http://fordi.org/json-plus for syntactical details.
 
-## Usage
+## Install for your project
 
-    Copy the contents of `lib` to your project's directory.  I'll work on 
-    appropriate npm packaging in a bit.
+    npm install https://github.com/Fordi/json-plus --save
 
 ## API
 
