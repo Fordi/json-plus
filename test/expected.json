@@ -1,155 +1,32 @@
 {
-    "type": "Object",
-    "properties": [
-        {
-            "type": "NameValuePair",
-            "key": "Strings",
-            "value": {
-                "type": "Array",
-                "elements": [
-                    {
-                        "type": "String",
-                        "chars": [
-                            "T",
-                            "e",
-                            "s",
-                            "t"
-                        ],
-                        "value": "Test"
-                    },
-                    {
-                        "type": "String",
-                        "chars": [
-                            {
-                                "type": "UnicodeEscape",
-                                "codePoint": 4660
-                            }
-                        ],
-                        "value": "ሴ"
-                    },
-                    {
-                        "type": "String",
-                        "chars": [
-                            {
-                                "type": "CodeEscape",
-                                "char": "r"
-                            },
-                            {
-                                "type": "CodeEscape",
-                                "char": "n"
-                            }
-                        ],
-                        "value": "\r\n"
-                    },
-                    {
-                        "type": "String",
-                        "chars": [
-                            {
-                                "type": "CodeEscape",
-                                "char": "\""
-                            }
-                        ],
-                        "value": "\""
-                    }
-                ]
-            }
-        },
-        {
-            "type": "NameValuePair",
-            "key": "Numbers",
-            "value": {
-                "type": "Array",
-                "elements": [
-                    {
-                        "type": "Number",
-                        "value": 12345
-                    },
-                    {
-                        "type": "Number",
-                        "value": 100
-                    },
-                    {
-                        "type": "Number",
-                        "value": -340000
-                    },
-                    {
-                        "type": "Number",
-                        "value": 6.7e-8
-                    },
-                    {
-                        "type": "Number",
-                        "value": 1000000000
-                    }
-                ]
-            }
-        },
-        {
-            "type": "NameValuePair",
-            "key": "keywords",
-            "value": {
-                "type": "Array",
-                "elements": [
-                    {
-                        "type": "Boolean",
-                        "value": true
-                    },
-                    {
-                        "type": "Boolean",
-                        "value": false
-                    },
-                    {
-                        "type": "null"
-                    }
-                ]
-            }
-        },
-        {
-            "type": "NameValuePair",
-            "key": "label",
-            "value": {
-                "type": "String",
-                "chars": [
-                    "R",
-                    "e",
-                    "f",
-                    "e",
-                    "r",
-                    "e",
-                    "n",
-                    "c",
-                    "e",
-                    "d"
-                ],
-                "value": "Referenced"
-            }
-        },
-        {
-            "type": "NameValuePair",
-            "key": "reference",
-            "value": {
-                "type": "String",
-                "chars": [
-                    "R",
-                    "e",
-                    "f",
-                    "e",
-                    "r",
-                    "e",
-                    "n",
-                    "c",
-                    "e",
-                    "d"
-                ],
-                "value": "Referenced"
-            }
-        },
-        {
-            "type": "NameValuePair",
-            "key": "typed",
-            "value": {
-                "type": "Type",
-                "properties": null
-            }
+    "Strings": [
+        "Test",
+        "ሴ",
+        "\r\n",
+        "\""
+    ],
+    "Numbers": [
+        12345,
+        100,
+        -340000,
+        6.7e-8,
+        1000000000
+    ],
+    "keywords": [
+        true,
+        false,
+        null
+    ],
+    "repeatedNames": {
+        "name": {
+            "0": "Fordi",
+            "1": "Fordiman",
+            "length": 2
         }
-    ]
+    },
+    "label": "Referenced",
+    "reference": "Referenced",
+    "typed": {
+        "type": "Type"
+    }
 }

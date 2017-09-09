@@ -17,6 +17,10 @@
         false,
         null
     ],
+    repeatedNames: {
+        name: "Fordi",
+        name: "Fordiman"
+    },
     label: ref: "Referenced",
     reference: @ref,
     typed: Type {}
