@@ -8,22 +8,6 @@
   <body>
     <div class="rule">
       <p class="rule-title">
-        <a name="Object">Object:</a>
-      </p>
-      <object data="Object.svg" type="image/svg+xml">
-        <img src="Object.svg"/>
-      </object>
-      <p class="rule-ebnf">
-        <div class="ebnf">
-          <pre><a href="#Object" title="Object">Object</a>   ::= <a href="#Type" title="Type">Type</a>? '{' ( ( <a href="#String" title="String">String</a> | <a href="#Name" title="Name">Name</a> ) ':' <a href="#Value" title="Value">Value</a> ( ',' ( <a href="#String" title="String">String</a> | <a href="#Name" title="Name">Name</a> ) ':' <a href="#Value" title="Value">Value</a> )* )? '}'</pre>
-        </div>
-      </p>
-      <p class="rule-references">referenced by:
-         <ul><li><a href="#Value" title="Value">Value</a></li></ul>
-      </p>
-    </div>
-    <div class="rule">
-      <p class="rule-title">
         <a name="Value">Value:</a>
       </p>
       <object data="Value.svg" type="image/svg+xml">
@@ -36,6 +20,22 @@
       </p>
       <p class="rule-references">referenced by:
          <ul><li><a href="#Array" title="Array">Array</a></li><li><a href="#Object" title="Object">Object</a></li></ul>
+      </p>
+    </div>
+    <div class="rule">
+      <p class="rule-title">
+        <a name="Object">Object:</a>
+      </p>
+      <object data="Object.svg" type="image/svg+xml">
+        <img src="Object.svg"/>
+      </object>
+      <p class="rule-ebnf">
+        <div class="ebnf">
+          <pre><a href="#Object" title="Object">Object</a>   ::= <a href="#Type" title="Type">Type</a>? '{' ( ( <a href="#String" title="String">String</a> | <a href="#Name" title="Name">Name</a> ) ':' <a href="#Value" title="Value">Value</a> ( ',' ( <a href="#String" title="String">String</a> | <a href="#Name" title="Name">Name</a> ) ':' <a href="#Value" title="Value">Value</a> )* )? '}'</pre>
+        </div>
+      </p>
+      <p class="rule-references">referenced by:
+         <ul><li><a href="#Value" title="Value">Value</a></li></ul>
       </p>
     </div>
     <div class="rule">
@@ -227,7 +227,7 @@
       <p class="rule-ebnf">
         <div class="ebnf">
           <pre><a href="#Comment" title="Comment">Comment</a>  ::= '/*' <a href="#." title=".">.</a>* '*/'
-           | '//' <a href="#." title=".">.</a>* '\n'</pre>
+           | '//' <a href="#." title=".">.</a>*</pre>
         </div>
       </p>
       <p class="rule-references">no references</p>
