@@ -1,7 +1,3 @@
 # JSON+
 
-JSON parser for node with a few extensions:
-
-## Typed objects
-
-![Object](/../master/docs/Object.svg)
+JSON parser for node with a few extensions.  Check out and open docs/json-plus-railroad.xhtml for details.
