@@ -2,7 +2,7 @@
   "name": "json-plus",
   "version": "1.0.0",
   "description": "Parser and description of JSON+, an extended JSON format that allows for recursion and typing.",
-  "main": "index.js",
+  "main": "lib/json-plus.js",
   "directories": {
     "doc": "docs",
     "test": "test"
