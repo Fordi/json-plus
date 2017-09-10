@@ -82,6 +82,7 @@ readFiles({
     svgCss: 'tools/railroad.css', 
     docTemplate: 'tools/doc-template.html', 
     ruleTemplate: 'tools/rule-template.html', 
+    sampleCode: 'test/input.json',
     readme: 'README.md'
 }).then(function (res) {
     // Make the HTML for the README file; this'll go at the top of our document
@@ -149,7 +150,8 @@ readFiles({
     var indexHtml = mustache.render(res.docTemplate, {
         apiDoc: apiDoc,
         rules: rules.join(''),
-        grammar: grammars.join('\n')
+        grammar: grammars.join('\n'),
+        example: res.sampleCode
     });
     writer.write('docs/index.html', indexHtml);
 });

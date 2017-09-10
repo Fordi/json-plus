@@ -3,7 +3,9 @@
         "Test",
         "ሴ",
         "\r\n",
-        "\""
+        "\"",
+        "Single-quoted",
+        "Multi-line\\\nStrings"
     ],
     "Numbers": [
         12345,
@@ -15,6 +17,9 @@
     "keywords": [
         true,
         false,
+        null,
+        null,
+        null,
         null
     ],
     "repeatedNames": {

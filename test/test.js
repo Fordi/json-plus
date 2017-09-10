@@ -24,8 +24,11 @@ fs.readFile('input.json', { encoding: 'utf-8' }, (err, input) => {
 	if (parsed.repeatedNames.name.length !== 2) {
 		throw new Error("Test failed; MultiValue failed to enumerate all listed values");
 	}
+	if (parsed.keywords[3] !== Infinity || parsed.keywords[4] !== -Infinity || !(typeof parsed.keywords[5] !== 'number' || isNaN(parsed.keywords[5]))) {
+		throw new Error("Parsing of JSON5 special numbers failed!");
+	}
 	var output = JSON.stringify(parsed, null, 4).trim();
-	//console.log(output);
+	console.log(output);
 	fs.readFile('expected.json', { encoding: 'utf-8' }, (err, expected) => {
 		if (expected.trim() !== output) {
 			console.log(expected.trim().length, output.length);

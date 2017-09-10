@@ -4,25 +4,36 @@
         "Test",
         "\u1234",
         "\r\n",
-        "\""
-    ],    
+        "\"",
+        'Single-quoted',
+        'Multi-line\
+Strings'
+    ],  
     Numbers: [
-        /**/12345,
+        12345,
         1e2,
-        -3.4e5,/**/ // Testing where comments will break.
+        -3.4e5,
         +6.7e-8,
         1e+9
     ],
-    keywords:/**/[
+    // JSON5-compatible features
+    keywords: [
         true,
         false,
-        null
+        null,
+        Infinity,
+        -Infinity,
+        NaN
     ],
+    // Support multiple instances of the same name in an object
     repeatedNames: {
         name: "Fordi",
         name: "Fordiman"
     },
+    
+    // Labels and references.  Labels directly precede the value
     label: ref: { data: "Referenced" },
-    reference: @ref, // Reference to the value of `label` above.
-    typed: Type {}
+    // References are '@', plus the label ID
+    reference: @ref,
+    typed: Type {},
 }
