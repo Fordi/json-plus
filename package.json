@@ -24,6 +24,9 @@
   },
   "homepage": "https://github.com/Fordi/json-plus#readme",
   "devDependencies": {
-    "pegjs": "^0.10.0"
+    "pegjs": "^0.10.0",
+    "railroad-diagrams": "git+https://github.com/tabatkins/railroad-diagrams.git#gh-pages",
+    "mustache": "^2.3.0",
+    "showdown": "^1.7.4"
   }
 }

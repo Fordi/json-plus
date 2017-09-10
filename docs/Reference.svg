@@ -1,20 +1,65 @@
-<?xml version="1.0"?>
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="178" height="36">
-  <defs>
-    <style type="text/css">@import url("json-plus-railroads-svg.css");</style>
-    <script xlink:href="json-plus-railroads-svg.js"/>
-  </defs>
-  <polygon points="9 17 1 13 1 21"/>
-  <polygon points="17 17 9 13 9 21"/>
-  <rect x="31" y="3" width="30" height="32" rx="10"/>
-  <rect x="29" y="1" width="30" height="32" class="terminal" rx="10"/>
-  <text class="terminal" x="39" y="21">@</text>
-  <a xlink:href="#Identifier" xlink:title="Identifier" href="#Identifier" target="_parent">
-    <rect x="81" y="3" width="70" height="32"/>
-    <rect x="79" y="1" width="70" height="32" class="nonterminal"/>
-    <text class="nonterminal" x="89" y="21">Identifier</text>
-  </a>
-  <path class="line" d="m17 17 h2 m0 0 h10 m30 0 h10 m0 0 h10 m70 0 h10 m3 0 h-3"/>
-  <polygon points="169 17 177 13 177 21"/>
-  <polygon points="169 17 161 13 161 21"/>
+<svg  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink" class="railroad-diagram" width="248" height="62" viewBox="0 0 248 62"><defs><style type="text/css">@namespace url(http://www.w3.org/2000/svg);
+path {
+    stroke-width: 3;
+    stroke: black;
+    fill: rgba(0,0,0,0);
+}
+text {
+    font: bold 14px monospace;
+    text-anchor: middle;
+}
+text.diagram-text {
+    font-size: 12px;
+}
+text.diagram-arrow {
+    font-size: 16px;
+}
+text.label {
+    text-anchor: start;
+}
+text.comment {
+    font: italic 12px monospace;
+}
+g.non-terminal text {
+    /*font-style: italic;*/
+}
+rect {
+    stroke-width: 3;
+    stroke: black;
+    fill: hsl(120,100%,90%);
+}
+path.diagram-text {
+    stroke-width: 3;
+    stroke: black;
+    fill: white;
+    cursor: help;
+}
+g.diagram-text:hover path.diagram-text {
+    fill: #eee;
+}</style></defs>
+<g transform="translate(.5 .5)">
+<path d="M 20 21 v 20 m 10 -20 v 20 m -10 -10 h 20.5"></path>
+<path d="M40 31h10"></path>
+<g>
+<path d="M50 31h0"></path>
+<path d="M198 31h0"></path>
+<g class="terminal">
+<path d="M50 31h0"></path>
+<path d="M78 31h0"></path>
+<rect x="50" y="20" width="28" height="22" rx="10" ry="10"></rect>
+<text x="64" y="35">@</text>
+</g>
+<path d="M78 31h10"></path>
+<path d="M88 31h10"></path>
+<g class="non-terminal">
+<path d="M98 31h0"></path>
+<path d="M198 31h0"></path>
+<rect x="98" y="20" width="100" height="22"></rect>
+<a xlink:href="#Identifier"><text x="148" y="35">Identifier</text>
+</a>
+</g>
+</g>
+<path d="M198 31h10"></path>
+<path d="M 208 31 h 20 m -10 -10 v 20 m 10 -20 v 20"></path>
+</g>
 </svg>

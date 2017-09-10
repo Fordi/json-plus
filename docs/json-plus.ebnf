@@ -1,41 +1,10 @@
-Value
-  ::= (((Identifier ":"))? (
-        Object
-        | Array
-        | ((
-        True
-        | False
-    ))
-        | ("null")
-        | Number
-        | Reference
-    ))
-
-Reference         ::= ("@" Identifier)
-
-Object
-  ::= ((Identifier)? "{" ((((((
-        (Identifier ":")
-        | (String ":")
-    )) Value)) ("," ((((
-        (Identifier ":")
-        | (String ":")
-    )) Value)))*))? "}")
-
-Array             ::= ("[" ((Value (("," Value))*))? "]")
-
-Identifier        ::= (([A-Za-z_]) ([A-Za-z0-9_])*)
-
+Value             ::= (Identifier ":")? (Object| Array| String| ((("true")| ("false")))| ("null")| Number| Reference)
+Reference         ::= "@" Identifier
+Object            ::= Identifier? "{" ((((Identifier ":"| (String) ":")) Value) "," (((Identifier ":"| (String) ":")) Value)*)? "}"
+Array             ::= "[" (Value ("," Value)*)? "]"
+Identifier        ::= ([A-Za-z_]) ([A-Za-z0-9_])*
 HexDigit          ::= [0-9A-Fa-f]
-
-True              ::= "true"
-
-False             ::= "false"
-
-Number            ::= (([+-])? (Digit+) (("." (Digit+)))? (([eE] ([+-])? (Digit+)))?)
-
+String            ::= ["] ([^ " \ #x0-#x1f ]| ("\\" ["/\bfnrt])| ("\\u" (HexDigit HexDigit HexDigit HexDigit)))* ["]
+Number            ::= ([+-])? (Digit+) ("." (Digit+))? ([eE] ([+-])? (Digit+))?
 Digit             ::= [0-9]
-
-Comment
-  ::= ("/*" ((.))* "*/")
-    | ("//" ((.))*)
+Comment           ::= ("/*" (.)* "*/"| "//" (.)*)
