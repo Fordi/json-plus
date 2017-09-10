@@ -8,7 +8,10 @@
         'Single-quoted',
         'Multi-line\
 Strings'
-    ],  
+    ],
+    /**
+     *  Don't care what the EBNF says.  The PEG grammar's handling comments correctly. 
+     **/
     Numbers: [
         12345,
         1e2,
