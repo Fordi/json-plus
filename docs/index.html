@@ -122,6 +122,39 @@ Strings'
     },
     // Trailing commas in objects, too!
 }</pre>
+            <p>Then, add some handlers and parse!</p>
+            <pre>var handlers = {
+    // A built-in behavior to make lists of multiple name instances
+    multiValue: jsonPlus.multiValueHandler
+};
+
+/**
+ * Use your own classes
+ **/
+function Person(init) {
+    this.name = init.name;
+}
+// Implement to create your own output
+Person.prototype.toJsonPlus = function (indent) {
+    return "Person " + JSON.stringify({
+        name: this.name
+    }, null, indent);
+};
+// And handle your class in JSON+ files
+handlers.Person = (init) => new Person(init);
+
+
+/**
+ * Decorate built-in classes
+ */
+Date.prototype.toJsonPlus = function () {
+    return "Date { stamp: " + JSON.stringify(+this / 1000) + " }";
+}
+// And handle your serialization:
+handlers.Date = (init) => new Date(init.stamp * 1000)
+
+// Finally, parse some input!
+var parsed = jsonPlus.parse(input, handlers);</pre>
         </article>
         <article class="syntax">
             <section class="main">

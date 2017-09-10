@@ -11,7 +11,7 @@ details.  Code is on [Github](https://github.com/Fordi/json-plus).
 ## API
 
     const jsonPlus = require('json-plus');
-    
+
 ### Parsing
 
     var parsed = jsonPlus.parse(inputString, handlers);
