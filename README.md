@@ -1,6 +1,6 @@
 # JSON+
 
-JSON parser for node with a few extensions.  See 
+[JSON5](http://json5.org)-compliant parser for node with a few extensions.  See 
 [http://fordi.org/json-plus](http://fordi.org/json-plus) for syntactical 
 details.  Code is on [Github](https://github.com/Fordi/json-plus).
 
