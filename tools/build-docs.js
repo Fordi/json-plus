@@ -15,7 +15,7 @@ io.readFiles({
     svgCss: 'tools/railroad.css', 
     docTemplate: 'tools/doc-template.html', 
     ruleTemplate: 'tools/rule-template.html', 
-    sampleCode: 'test/input.json',
+    sampleCode: 'test/input.jp',
     readme: 'README.md'
 }).then(function (res) {
     // Make the HTML for the README file; this'll go at the top of our document
