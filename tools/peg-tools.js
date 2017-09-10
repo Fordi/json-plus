@@ -217,7 +217,7 @@ toRailroads.handlers = {
         return railroads.Optional(exp, 'skip');
     },
     'literal': (node, ignoreRules, inlineRules, replaceRules, process) => {
-        return railroads.Terminal(node.value);
+        return railroads.Terminal(node.value.replace(/\n/g, '\\n').replace(/\r/g, '\\r'));
     },
     'one_or_more': (node, ignoreRules, inlineRules, replaceRules, process) => {
         var exp = process(node.expression);
@@ -241,7 +241,7 @@ toRailroads.handlers = {
         return;
     },
     'class': (node, ignoreRules, inlineRules, replaceRules, process) => {
-        return railroads.Choice.apply(railroads, [0].concat(node.parts.map((part) => {
+        var parts = node.parts.map((part) => {
             var brackets = true;
             if (!Array.isArray(part)) {
                 part = [part];
@@ -253,11 +253,20 @@ toRailroads.handlers = {
                     .replace(/\\"/g, '"')
                     .replace(/\\\\/g, '\\')
                     .replace(/\\u[0]*([0-9a-fA-F]+)/g, '#x$1')
-                    
+                    .replace(/\n/g, '\\ n')
+                    .replace(/\r/g, '\\ r');
             }).join('-');
             if (!part) { return; }
-            return railroads.Terminal(brackets ? ('[' + part + ']') : part);
-        }).filter(ifExists)));
+            return part;
+        }).filter(ifExists);        
+        if (!node.inverted) {
+            return railroads.Choice.apply(railroads, [0].concat(parts.map((part) => {
+                var brackets = part.indexOf('-') === 1;
+                return railroads.Terminal(brackets ? ('[' + part + ']') : part);
+            })));
+        } else {
+            return railroads.Terminal('[^' + parts.join(' ') + ']');
+        }
     },
     'any': () => {
         return railroads.Terminal("Any");

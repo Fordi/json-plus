@@ -115,19 +115,12 @@ Strings'
 Reference         ::= "@" Identifier
 Object            ::= Identifier? "{" ((((Identifier ":"| (String) ":")) Value) "," (((Identifier ":"| (String) ":")) Value)*)? (",")? "}"
 Array             ::= "[" (Value ("," Value)*)? (",")? "]"
-Identifier        ::= ([A-Za-z_]) ([A-Za-z0-9_])*
+String            ::= ((['] (Escape| ([^ ' \ #x0-#x1f ]))* ['])| (["] (Escape| ([^ " \ #x0-#x1f ]))* ["]))
+Escape            ::= (("\\u" (HexDigit HexDigit HexDigit HexDigit))| ("\\" ["'/\bfnrt])| (("\\" "\r\n"| "\\" "\r"| "\\" "\n")))
 HexDigit          ::= [0-9A-Fa-f]
-StringSplit       ::= ("\\\r\n"| "\\\r"| "\\\n")
-SQStringChar      ::= [^ ' \ #x0-#x1f ]
-DQStringChar      ::= [^ " \ #x0-#x1f ]
-String            ::= (SingleQuoteString| DoubleQuoteString)
-SingleQuoteString ::= ['] (StringSplit| ("\\" ["'/\bfnrt])| ("\\u" (HexDigit HexDigit HexDigit HexDigit))| SQStringChar)* [']
-DoubleQuoteString ::= ["] (StringSplit| ("\\" ["'/\bfnrt])| ("\\u" (HexDigit HexDigit HexDigit HexDigit))| DQStringChar)* ["]
-Number            ::= (LiteralNumber| Infinitive| NaN)
-Infinitive        ::= [+-]? ("Infinity"| "Inf")
-NaN               ::= "NaN"
-LiteralNumber     ::= ([+-])? (Digit+) ("." (Digit+))? ([eE] ([+-])? (Digit+))?
+Number            ::= ((([+-])? (Digit+) ("." (Digit+))? ([eE] ([+-])? (Digit+))?)| ([+-]? ("Infinity"| "Inf"))| ("NaN"))
 Digit             ::= [0-9]
+Identifier        ::= ([A-Za-z_]) ([A-Za-z0-9_])*
 Comment           ::= ("/*" (.)* "*/"| "//" (.)*)</pre>
                 </div>
             </section>
@@ -181,16 +174,28 @@ Comment           ::= ("/*" (.)* "*/"| "//" (.)*)</pre>
         <pre>Array             ::= "[" (Value ("," Value)*)? (",")? "]"</pre>
     </div>
 </section><section class="rule">
-    <h3>Identifier</h3>
+    <h3>String</h3>
     <p class="svg">
         <h4>Railroad diagram</h4>
-        <object data="Identifier.svg" type="image/svg+xml">
-            <img src="Identifier.svg" />
+        <object data="String.svg" type="image/svg+xml">
+            <img src="String.svg" />
         </object>
     </p>
     <div class="ebnf">
         <h4>EBNF</h4>
-        <pre>Identifier        ::= ([A-Za-z_]) ([A-Za-z0-9_])*</pre>
+        <pre>String            ::= ((['] (Escape| ([^ ' \ #x0-#x1f ]))* ['])| (["] (Escape| ([^ " \ #x0-#x1f ]))* ["]))</pre>
+    </div>
+</section><section class="rule">
+    <h3>Escape</h3>
+    <p class="svg">
+        <h4>Railroad diagram</h4>
+        <object data="Escape.svg" type="image/svg+xml">
+            <img src="Escape.svg" />
+        </object>
+    </p>
+    <div class="ebnf">
+        <h4>EBNF</h4>
+        <pre>Escape            ::= (("\\u" (HexDigit HexDigit HexDigit HexDigit))| ("\\" ["'/\bfnrt])| (("\\" "\r\n"| "\\" "\r"| "\\" "\n")))</pre>
     </div>
 </section><section class="rule">
     <h3>HexDigit</h3>
@@ -205,78 +210,6 @@ Comment           ::= ("/*" (.)* "*/"| "//" (.)*)</pre>
         <pre>HexDigit          ::= [0-9A-Fa-f]</pre>
     </div>
 </section><section class="rule">
-    <h3>StringSplit</h3>
-    <p class="svg">
-        <h4>Railroad diagram</h4>
-        <object data="StringSplit.svg" type="image/svg+xml">
-            <img src="StringSplit.svg" />
-        </object>
-    </p>
-    <div class="ebnf">
-        <h4>EBNF</h4>
-        <pre>StringSplit       ::= ("\\\r\n"| "\\\r"| "\\\n")</pre>
-    </div>
-</section><section class="rule">
-    <h3>SQStringChar</h3>
-    <p class="svg">
-        <h4>Railroad diagram</h4>
-        <object data="SQStringChar.svg" type="image/svg+xml">
-            <img src="SQStringChar.svg" />
-        </object>
-    </p>
-    <div class="ebnf">
-        <h4>EBNF</h4>
-        <pre>SQStringChar      ::= [^ ' \ #x0-#x1f ]</pre>
-    </div>
-</section><section class="rule">
-    <h3>DQStringChar</h3>
-    <p class="svg">
-        <h4>Railroad diagram</h4>
-        <object data="DQStringChar.svg" type="image/svg+xml">
-            <img src="DQStringChar.svg" />
-        </object>
-    </p>
-    <div class="ebnf">
-        <h4>EBNF</h4>
-        <pre>DQStringChar      ::= [^ " \ #x0-#x1f ]</pre>
-    </div>
-</section><section class="rule">
-    <h3>String</h3>
-    <p class="svg">
-        <h4>Railroad diagram</h4>
-        <object data="String.svg" type="image/svg+xml">
-            <img src="String.svg" />
-        </object>
-    </p>
-    <div class="ebnf">
-        <h4>EBNF</h4>
-        <pre>String            ::= (SingleQuoteString| DoubleQuoteString)</pre>
-    </div>
-</section><section class="rule">
-    <h3>SingleQuoteString</h3>
-    <p class="svg">
-        <h4>Railroad diagram</h4>
-        <object data="SingleQuoteString.svg" type="image/svg+xml">
-            <img src="SingleQuoteString.svg" />
-        </object>
-    </p>
-    <div class="ebnf">
-        <h4>EBNF</h4>
-        <pre>SingleQuoteString ::= ['] (StringSplit| ("\\" ["'/\bfnrt])| ("\\u" (HexDigit HexDigit HexDigit HexDigit))| SQStringChar)* [']</pre>
-    </div>
-</section><section class="rule">
-    <h3>DoubleQuoteString</h3>
-    <p class="svg">
-        <h4>Railroad diagram</h4>
-        <object data="DoubleQuoteString.svg" type="image/svg+xml">
-            <img src="DoubleQuoteString.svg" />
-        </object>
-    </p>
-    <div class="ebnf">
-        <h4>EBNF</h4>
-        <pre>DoubleQuoteString ::= ["] (StringSplit| ("\\" ["'/\bfnrt])| ("\\u" (HexDigit HexDigit HexDigit HexDigit))| DQStringChar)* ["]</pre>
-    </div>
-</section><section class="rule">
     <h3>Number</h3>
     <p class="svg">
         <h4>Railroad diagram</h4>
@@ -286,43 +219,7 @@ Comment           ::= ("/*" (.)* "*/"| "//" (.)*)</pre>
     </p>
     <div class="ebnf">
         <h4>EBNF</h4>
-        <pre>Number            ::= (LiteralNumber| Infinitive| NaN)</pre>
-    </div>
-</section><section class="rule">
-    <h3>Infinitive</h3>
-    <p class="svg">
-        <h4>Railroad diagram</h4>
-        <object data="Infinitive.svg" type="image/svg+xml">
-            <img src="Infinitive.svg" />
-        </object>
-    </p>
-    <div class="ebnf">
-        <h4>EBNF</h4>
-        <pre>Infinitive        ::= [+-]? ("Infinity"| "Inf")</pre>
-    </div>
-</section><section class="rule">
-    <h3>NaN</h3>
-    <p class="svg">
-        <h4>Railroad diagram</h4>
-        <object data="NaN.svg" type="image/svg+xml">
-            <img src="NaN.svg" />
-        </object>
-    </p>
-    <div class="ebnf">
-        <h4>EBNF</h4>
-        <pre>NaN               ::= "NaN"</pre>
-    </div>
-</section><section class="rule">
-    <h3>LiteralNumber</h3>
-    <p class="svg">
-        <h4>Railroad diagram</h4>
-        <object data="LiteralNumber.svg" type="image/svg+xml">
-            <img src="LiteralNumber.svg" />
-        </object>
-    </p>
-    <div class="ebnf">
-        <h4>EBNF</h4>
-        <pre>LiteralNumber     ::= ([+-])? (Digit+) ("." (Digit+))? ([eE] ([+-])? (Digit+))?</pre>
+        <pre>Number            ::= ((([+-])? (Digit+) ("." (Digit+))? ([eE] ([+-])? (Digit+))?)| ([+-]? ("Infinity"| "Inf"))| ("NaN"))</pre>
     </div>
 </section><section class="rule">
     <h3>Digit</h3>
@@ -335,6 +232,18 @@ Comment           ::= ("/*" (.)* "*/"| "//" (.)*)</pre>
     <div class="ebnf">
         <h4>EBNF</h4>
         <pre>Digit             ::= [0-9]</pre>
+    </div>
+</section><section class="rule">
+    <h3>Identifier</h3>
+    <p class="svg">
+        <h4>Railroad diagram</h4>
+        <object data="Identifier.svg" type="image/svg+xml">
+            <img src="Identifier.svg" />
+        </object>
+    </p>
+    <div class="ebnf">
+        <h4>EBNF</h4>
+        <pre>Identifier        ::= ([A-Za-z_]) ([A-Za-z0-9_])*</pre>
     </div>
 </section><section class="rule">
     <h3>Comment</h3>

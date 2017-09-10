@@ -75,7 +75,7 @@ var writer = new Writer();
 writer.then(() => {
     console.log("Build finished");
 }, (err) => {
-    throw err;
+    console.error(err);
 });
 readFiles({
     grammar: 'lib/json-plus-grammar.pegjs', 
@@ -114,7 +114,15 @@ readFiles({
         'NameValuePairList',
         'StringValue',
         'True',
-        'False'
+        'False',
+        'SingleQuoteString',
+        'DoubleQuoteString',
+        'SQStringChar',
+        'DQStringChar',
+        'LiteralNumber',
+        'Infinitive',
+        'NaN',
+        'StringSplit',
     ];
     var renameRules = { 
         JSON: "Value"
@@ -154,4 +162,6 @@ readFiles({
         example: res.sampleCode
     });
     writer.write('docs/index.html', indexHtml);
+}, function (err) {
+    console.error(err);
 });
