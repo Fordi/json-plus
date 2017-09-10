@@ -1,8 +1,12 @@
-article {
+article, footer {
     width: 8in;
     margin: 0 auto;
     background-color: #EFEFFF;
     padding: 0.25em 1em;
+}
+
+footer {
+    text-align: center;
 }
 
 html, body {
