@@ -20,15 +20,18 @@ Strings'
         1e+9,
         0xdeadbeef
     ],
-    // JSON5-compatible features
-    keywords: [
+    
+    jsonKeywords: [
         true,
         false,
         null,
+        // Oh, what next?  Nothing? It's all good.  I'm an understanding parser.
+    ],
+    // JSON5-compatible features
+    json5Keywords: [
         Infinity,
         -Infinity,
         NaN,
-        // Oh, what next?  Nothing? It's all good.  I'm an understanding parser.
     ],
     // Support multiple instances of the same name in an object
     repeatedNames: {
@@ -40,6 +43,10 @@ Strings'
     label: ref: { data: "Referenced" },
     // References are '@', plus the label ID
     reference: @ref,
+    // Recursion!  Break stuff!
+    recursion: recurse: {
+        recursion: @recurse
+    },
     // Trailing commas in objects, too!
     typed: Type {},
 }

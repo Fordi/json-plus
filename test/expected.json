@@ -15,28 +15,9 @@
         1000000000,
         3735928559
     ],
-    "keywords": [
+    "jsonKeywords": [
         true,
         false,
-        null,
-        null,
-        null,
         null
-    ],
-    "repeatedNames": {
-        "name": {
-            "0": "Fordi",
-            "1": "Fordiman",
-            "length": 2
-        }
-    },
-    "label": {
-        "data": "Referenced"
-    },
-    "reference": {
-        "data": "Referenced"
-    },
-    "typed": {
-        "type": "Type"
-    }
+    ]
 }
