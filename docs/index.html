@@ -67,6 +67,11 @@ which should return a your object's string representation in JSON+.</p>
         <article class="example">
             <h2>Example:</h2>
             <pre>{
+    // I've been told I shouldn't bury the lead.
+    Typed: Date { stamp: 1505057349.043 },
+    alsoTyped: Person {
+        name: "Bryan Elliott"
+    },
     /* Hey, look.  Comments */
     Strings: [
         "Test",
@@ -116,7 +121,6 @@ Strings'
         recursion: @recurse
     },
     // Trailing commas in objects, too!
-    typed: Type {},
 }</pre>
         </article>
         <article class="syntax">
@@ -128,7 +132,7 @@ Strings'
 Reference         ::= "@" Identifier
 Object            ::= Identifier? "{" ((((Identifier ":"| (String) ":")) Value) "," (((Identifier ":"| (String) ":")) Value)*)? (",")? "}"
 Array             ::= "[" (Value ("," Value)*)? (",")? "]"
-String            ::= ((['] (Escape| ([^ ' \ #x0-#x1f ]))* ['])| (["] (Escape| ([^ " \ #x0-#x1f ]))* ["]))
+String            ::= ((['] (Escape| (([^ ' \ #x0-#x1f ]| " ")))* ['])| (["] (Escape| (([^ " \ #x0-#x1f ]| " ")))* ["]))
 Escape            ::= (("\\u" (HexDigit HexDigit HexDigit HexDigit))| ("\\" ["'/\bfnrt])| (("\\" "\r\n"| "\\" "\r"| "\\" "\n")))
 HexDigit          ::= [0-9A-Fa-f]
 Number            ::= (("NaN")| ([+-])? (("0x" HexDigit+)| ((Digit+) ("." (Digit+))? ([eE] ([+-])? (Digit+))?)| (("Infinity"| "Inf"))))
@@ -196,7 +200,7 @@ Comment           ::= ("/*" (.)* "*/"| "//" (.)*)</pre>
     </p>
     <div class="ebnf">
         <h4>EBNF</h4>
-        <pre>String            ::= ((['] (Escape| ([^ ' \ #x0-#x1f ]))* ['])| (["] (Escape| ([^ " \ #x0-#x1f ]))* ["]))</pre>
+        <pre>String            ::= ((['] (Escape| (([^ ' \ #x0-#x1f ]| " ")))* ['])| (["] (Escape| (([^ " \ #x0-#x1f ]| " ")))* ["]))</pre>
     </div>
 </section><section class="rule">
     <h3>Escape</h3>
