@@ -3,16 +3,23 @@ const io = require(__dirname + '/../tools/io-tools');
 
 const fs = require('fs');
 
-function Type() {
-	this.type = "Type";
+function Person(init) {
+	this.name = init.name;
 }
-Type.prototype.toJsonPlus = function (indent) {
-	return "Type " + JSON.stringify(this, indent);
+Person.prototype.toJsonPlus = function (indent) {
+	return "Person " + JSON.stringify({
+		name: this.name
+	}, null, indent);
 };
+
+Date.prototype.toJsonPlus = function () {
+	return "Date { stamp: " + JSON.stringify(+this / 1000) + " }";
+}
 
 var handlers = {
 	multiValue: jsonPlus.multiValueHandler,
-	Type: (data) => new Type(data)
+	"Person": (init) => new Person(init),
+	"Date": (init) => new Date(init.stamp * 1000)
 };
 
 function compareObjects(left, right) {
@@ -70,6 +77,18 @@ io.readFiles({
 		var parsed = jsonPlus.parse(res.input, handlers);
 		var expected = JSON.parse(res.expected);
 		// Ad-hoc tests
+		if (!(parsed.Typed instanceof Date)) {
+			throw new Error("Test failed; parsed Date is not a Date");
+		}
+		if (+parsed.Typed !== 1505057349043) {
+			throw new Error("Test failed; parsed Date value doesn't match");
+		}
+		if (!(parsed.alsoTyped instanceof Person)) {
+			throw new Error("Test failed; parsed Person is not a Person");
+		}
+		if (parsed.alsoTyped.name !== 'Bryan Elliott') {
+			throw new Error("Test failed; initialized Person is not Author");
+		}
 		if (parsed.reference !== parsed.label) {
 			throw new Error("Test failed; referenced object not same as labeled");
 		}
@@ -88,6 +107,7 @@ io.readFiles({
 		if (parsed.json5Keywords[0] !== Infinity || parsed.json5Keywords[1] !== -Infinity || !(typeof parsed.json5Keywords[2] !== 'number' || isNaN(parsed.json5Keywords[3]))) {
 			throw new Error("Parsing of JSON5 special numbers failed!");
 		}
+		console.log("Parsing passed");
 		// Compare with expected values
 		var rootKeys = Object.keys(expected);
 		var mismatch = rootKeys.findIndex((key) => {

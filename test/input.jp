@@ -1,4 +1,9 @@
 {
+    // I've been told I shouldn't bury the lead.
+    Typed: Date { stamp: 1505057349.043 },
+    alsoTyped: Person {
+        name: "Bryan Elliott"
+    },
     /* Hey, look.  Comments */
     Strings: [
         "Test",
@@ -48,5 +53,4 @@ Strings'
         recursion: @recurse
     },
     // Trailing commas in objects, too!
-    typed: Type {},
 }
