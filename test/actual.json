@@ -1,0 +1,36 @@
+{
+    "Strings": [
+        "Test",
+        "ሴ",
+        "\r\n",
+        "\""
+    ],
+    "Numbers": [
+        12345,
+        100,
+        -340000,
+        6.7e-8,
+        1000000000
+    ],
+    "keywords": [
+        true,
+        false,
+        null
+    ],
+    "repeatedNames": {
+        "name": {
+            "0": "Fordi",
+            "1": "Fordiman",
+            "length": 2
+        }
+    },
+    "label": {
+        "data": "Referenced"
+    },
+    "reference": {
+        "data": "Referenced"
+    },
+    "typed": {
+        "type": "Type"
+    }
+}

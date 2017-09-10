@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>JSON+</title>
+        <link rel="stylesheet" href="json-plus.css" />
+    </head>
+    <body>
+        <article class="api-docs">
+            <h1 id="json">JSON+</h1>
+<p>JSON parser for node with a few extensions.  See 
+<a href="http://fordi.org/json-plus">http://fordi.org/json-plus</a> for syntactical 
+details.  Code is on <a href="https://github.com/Fordi/json-plus">Github</a>.</p>
+<h2 id="installforyourproject">Install for your project</h2>
+<pre><code>npm install https://github.com/Fordi/json-plus --save
+</code></pre>
+<h2 id="api">API</h2>
+<pre><code>const jsonPlus = require('json-plus');
+</code></pre>
+<h3 id="parsing">Parsing</h3>
+<pre><code>var parsed = jsonPlus.parse(inputString, handlers);
+</code></pre>
+<ul>
+<li><p>inputString - a valid JSON+ string</p></li>
+<li><p>handlers - an object whose keys are factories for named types, e.g., if you 
+wanted to use a type named <code>Person</code>, you'd pass:</p>
+<pre><code>handlers = {
+    Person: (def) =&gt; {
+        return new Person(def);
+    }
+};
+</code></pre>
+<p>You can also define a special handler called <code>multiValue(obj, oldValue, key, newValue)</code>,
+which will be called each time there's a duplicate name on an object definition.
+it should return the new value, for example, the default behavior is:</p>
+<pre><code>handlers = {
+    multiValue: (obj, oldValue, key, newValue) =&gt; newValue
+};
+</code></pre>
+<p>... but you may want to make multiple definitions result in an array, e.g.,</p>
+<pre><code>handlers = {
+    multiValue: (obj, oldValue, key, newValue) =&gt; {
+        if (!Array.isArray(oldValue)) {
+            oldValue = [ oldValue ];
+        }
+        oldValue.push(newValue);
+        return oldValue;
+    }
+};
+</code></pre>
+<p>There's already a handler for that sort of behavior, which uses <code>jsonPlus.MultiValue</code>
+to encapsulate things.  jsonPlus.MultiValue has the added benefit that it won't
+get confused with properties that are already Arrays, and that its valueOf() 
+and toString() functions behaves like the normal behavior (e.g., it returns
+the value of or the string value of the last object that was defined).</p></li>
+</ul>
+<h3 id="stringifying">Stringifying</h3>
+<pre><code>var strung = jsonPlus.stringify(jsObj, indentLength);
+</code></pre>
+<ul>
+<li>jsObj - the object to be stringified</li>
+<li>indentLength - the number of spaces to indent with</li>
+</ul>
+<p>For specialized stringification, you can define <code>toJsonPlus(indentString)</code> on your objects, 
+which should return a your object's string representation in JSON+.</p>
+        </article>
+        <article class="syntax">
+            <section class="main">
+                <h2>Syntax</h2>
+                <div class="ebnf">
+                    <h3>EBNF Syntax</h3>
+                    <pre class="ebnf">Value             ::= (Identifier ":")? (Object| Array| String| ((("true")| ("false")))| ("null")| Number| Reference)
+Reference         ::= "@" Identifier
+Object            ::= Identifier? "{" ((((Identifier ":"| (String) ":")) Value) "," (((Identifier ":"| (String) ":")) Value)*)? "}"
+Array             ::= "[" (Value ("," Value)*)? "]"
+Identifier        ::= ([A-Za-z_]) ([A-Za-z0-9_])*
+HexDigit          ::= [0-9A-Fa-f]
+String            ::= ["] ([^ " \ #x0-#x1f ]| ("\\" ["/\bfnrt])| ("\\u" (HexDigit HexDigit HexDigit HexDigit)))* ["]
+Number            ::= ([+-])? (Digit+) ("." (Digit+))? ([eE] ([+-])? (Digit+))?
+Digit             ::= [0-9]
+Comment           ::= ("/*" (.)* "*/"| "//" (.)*)</pre>
+                </div>
+            </section>
+            <section class="rules">
+                <section class="rule">
+    <h3>Value</h3>
+    <p class="svg">
+        <h4>Railroad diagram</h4>
+        <object data="Value.svg" type="image/svg+xml">
+            <img src="Value.svg" />
+        </object>
+    </p>
+    <div class="ebnf">
+        <h4>EBNF</h4>
+        <pre>Value             ::= (Identifier ":")? (Object| Array| String| ((("true")| ("false")))| ("null")| Number| Reference)</pre>
+    </div>
+</section><section class="rule">
+    <h3>Reference</h3>
+    <p class="svg">
+        <h4>Railroad diagram</h4>
+        <object data="Reference.svg" type="image/svg+xml">
+            <img src="Reference.svg" />
+        </object>
+    </p>
+    <div class="ebnf">
+        <h4>EBNF</h4>
+        <pre>Reference         ::= "@" Identifier</pre>
+    </div>
+</section><section class="rule">
+    <h3>Object</h3>
+    <p class="svg">
+        <h4>Railroad diagram</h4>
+        <object data="Object.svg" type="image/svg+xml">
+            <img src="Object.svg" />
+        </object>
+    </p>
+    <div class="ebnf">
+        <h4>EBNF</h4>
+        <pre>Object            ::= Identifier? "{" ((((Identifier ":"| (String) ":")) Value) "," (((Identifier ":"| (String) ":")) Value)*)? "}"</pre>
+    </div>
+</section><section class="rule">
+    <h3>Array</h3>
+    <p class="svg">
+        <h4>Railroad diagram</h4>
+        <object data="Array.svg" type="image/svg+xml">
+            <img src="Array.svg" />
+        </object>
+    </p>
+    <div class="ebnf">
+        <h4>EBNF</h4>
+        <pre>Array             ::= "[" (Value ("," Value)*)? "]"</pre>
+    </div>
+</section><section class="rule">
+    <h3>Identifier</h3>
+    <p class="svg">
+        <h4>Railroad diagram</h4>
+        <object data="Identifier.svg" type="image/svg+xml">
+            <img src="Identifier.svg" />
+        </object>
+    </p>
+    <div class="ebnf">
+        <h4>EBNF</h4>
+        <pre>Identifier        ::= ([A-Za-z_]) ([A-Za-z0-9_])*</pre>
+    </div>
+</section><section class="rule">
+    <h3>HexDigit</h3>
+    <p class="svg">
+        <h4>Railroad diagram</h4>
+        <object data="HexDigit.svg" type="image/svg+xml">
+            <img src="HexDigit.svg" />
+        </object>
+    </p>
+    <div class="ebnf">
+        <h4>EBNF</h4>
+        <pre>HexDigit          ::= [0-9A-Fa-f]</pre>
+    </div>
+</section><section class="rule">
+    <h3>String</h3>
+    <p class="svg">
+        <h4>Railroad diagram</h4>
+        <object data="String.svg" type="image/svg+xml">
+            <img src="String.svg" />
+        </object>
+    </p>
+    <div class="ebnf">
+        <h4>EBNF</h4>
+        <pre>String            ::= ["] ([^ " \ #x0-#x1f ]| ("\\" ["/\bfnrt])| ("\\u" (HexDigit HexDigit HexDigit HexDigit)))* ["]</pre>
+    </div>
+</section><section class="rule">
+    <h3>Number</h3>
+    <p class="svg">
+        <h4>Railroad diagram</h4>
+        <object data="Number.svg" type="image/svg+xml">
+            <img src="Number.svg" />
+        </object>
+    </p>
+    <div class="ebnf">
+        <h4>EBNF</h4>
+        <pre>Number            ::= ([+-])? (Digit+) ("." (Digit+))? ([eE] ([+-])? (Digit+))?</pre>
+    </div>
+</section><section class="rule">
+    <h3>Digit</h3>
+    <p class="svg">
+        <h4>Railroad diagram</h4>
+        <object data="Digit.svg" type="image/svg+xml">
+            <img src="Digit.svg" />
+        </object>
+    </p>
+    <div class="ebnf">
+        <h4>EBNF</h4>
+        <pre>Digit             ::= [0-9]</pre>
+    </div>
+</section><section class="rule">
+    <h3>Comment</h3>
+    <p class="svg">
+        <h4>Railroad diagram</h4>
+        <object data="Comment.svg" type="image/svg+xml">
+            <img src="Comment.svg" />
+        </object>
+    </p>
+    <div class="ebnf">
+        <h4>EBNF</h4>
+        <pre>Comment           ::= ("/*" (.)* "*/"| "//" (.)*)</pre>
+    </div>
+</section>
+            </section>
+        </article>
+        <footer>
+            &copy; 2017 Bryan Elliott, via [ISC](https://opensource.org/licenses/ISC)
+        </footer>
+    </body>
+</html>

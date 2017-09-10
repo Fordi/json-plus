@@ -1,0 +1,35 @@
+article {
+    width: 8in;
+    margin: 0 auto;
+    background-color: #EFEFFF;
+    padding: 0.25em 1em;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: sans;
+}
+
+pre {
+    font-size: 0.80em;
+    margin: 0 1em;
+    background-color: rgba(0, 0, 0, 0.125);
+    padding: 0.5em 1em;
+    white-space: pre-wrap;
+}
+
+object, img {
+    max-width: 100%;
+}
+
+.ebnf {
+    background-color: rgba(128, 128, 0, 0.125);
+    padding: 0.5em 1em;
+    margin: 0 -0.5em;
+}
+.ebnf pre {
+    background: none;
+    margin: 0;
+    padding: 0;
+}
