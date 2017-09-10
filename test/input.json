@@ -24,7 +24,8 @@ Strings'
         null,
         Infinity,
         -Infinity,
-        NaN
+        NaN,
+        // Oh, what next?  Nothing? It's all good.  I'm an understanding parser.
     ],
     // Support multiple instances of the same name in an object
     repeatedNames: {
@@ -36,5 +37,6 @@ Strings'
     label: ref: { data: "Referenced" },
     // References are '@', plus the label ID
     reference: @ref,
+    // Trailing commas in objects, too!
     typed: Type {},
 }
