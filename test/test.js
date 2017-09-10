@@ -28,10 +28,8 @@ fs.readFile('input.json', { encoding: 'utf-8' }, (err, input) => {
 		throw new Error("Parsing of JSON5 special numbers failed!");
 	}
 	var output = JSON.stringify(parsed, null, 4).trim();
-	console.log(output);
 	fs.readFile('expected.json', { encoding: 'utf-8' }, (err, expected) => {
 		if (expected.trim() !== output) {
-			console.log(expected.trim().length, output.length);
 			fs.writeFile("actual.json", output, { encoding: 'utf-8' }, (err) => {
 				throw new Error("Test failed; compare test/expected.json to test/actual.json");
 			});

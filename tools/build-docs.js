@@ -123,6 +123,7 @@ readFiles({
         'Infinitive',
         'NaN',
         'StringSplit',
+        'HexNumber'
     ];
     var renameRules = { 
         JSON: "Value"

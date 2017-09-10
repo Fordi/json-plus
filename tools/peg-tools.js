@@ -69,10 +69,6 @@ toEBNFs.handlers = {
         return node.rules.filter((rule) => !ignoreRules[rule.name]).map(process).filter(ifExists);
     },
     'rule': (node, ignoreRules, inlineRules, renameRules, process) => {
-        if (!node.expression) {
-            console.log(node);
-            throw new Error("Node is rule, but no expression");
-        }
         var expression = process(node.expression);
         var name = node.name;
         if (renameRules[name]) {
@@ -141,7 +137,6 @@ toEBNFs.handlers = {
         if (inlineRules[node.name]) { 
             var exp = process(inlineRules[node.name].expression); 
             if (exp.indexOf(nl) !== -1) {
-                console.log(exp);
                 exp = exp.split(nl).join(nl + indent);
                 return groupStart + nl + indent + indentSans + exp + nl + groupEnd;
             }

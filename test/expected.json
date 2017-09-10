@@ -5,14 +5,15 @@
         "\r\n",
         "\"",
         "Single-quoted",
-        "Multi-line\\\nStrings"
+        "Multi-lineStrings"
     ],
     "Numbers": [
         12345,
         100,
         -340000,
         6.7e-8,
-        1000000000
+        1000000000,
+        3735928559
     ],
     "keywords": [
         true,

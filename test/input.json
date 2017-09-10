@@ -14,7 +14,8 @@ Strings'
         1e2,
         -3.4e5,
         +6.7e-8,
-        1e+9
+        1e+9,
+        0xdeadbeef
     ],
     // JSON5-compatible features
     keywords: [
