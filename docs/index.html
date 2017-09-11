@@ -11,6 +11,18 @@
 <p><a href="http://json5.org">JSON5</a>-compliant parser for node with a few extensions.  See 
 <a href="http://fordi.org/json-plus">http://fordi.org/json-plus</a> for syntactical 
 details.  Code is on <a href="https://github.com/Fordi/json-plus">Github</a>.</p>
+<h2 id="motivation">Motivation</h2>
+<p>Originally, this was started to add a simple <code>type</code> parameter in front of Objects,
+so as to give more information for deserialization.  </p>
+<p>I also wanted to add explicit support for circular objects, as that's often a 
+pain point in state communication.</p>
+<p>When I learned of JSON5, it seemed silly not to include its modest changes to 
+the spec, so I did.  That's where you get comments, unquoted keys, single quotes,
+multi-line strings, hex, Infinity, and NaN.</p>
+<p>The implementation of multiple name instance handling was a choice to let another 
+developer make that decision.  There are cases where data is more accurately 
+represented using multiple name instances (like direct serialization of query 
+parameters).  It's probably the least important feature, though.</p>
 <h2 id="installforyourproject">Install for your project</h2>
 <pre><code>npm install https://github.com/Fordi/json-plus --save
 </code></pre>
