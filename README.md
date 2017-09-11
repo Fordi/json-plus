@@ -4,6 +4,23 @@
 [http://fordi.org/json-plus](http://fordi.org/json-plus) for syntactical 
 details.  Code is on [Github](https://github.com/Fordi/json-plus).
 
+## Motivation
+
+Originally, this was started to add a simple `type` parameter in front of Objects,
+so as to give more information for deserialization.  
+
+I also wanted to add explicit support for circular objects, as that's often a 
+pain point in state communication.
+
+When I learned of JSON5, it seemed silly not to include its modest changes to 
+the spec, so I did.  That's where you get comments, unquoted keys, single quotes,
+multi-line strings, hex, Infinity, and NaN.
+
+The implementation of multiple name instance handling was a choice to let another 
+developer make that decision.  There are cases where data is more accurately 
+represented using multiple name instances (like direct serialization of query 
+parameters).  It's probably the least important feature, though.
+
 ## Install for your project
 
     npm install https://github.com/Fordi/json-plus --save
